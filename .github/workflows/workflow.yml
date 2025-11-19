@@ -121,4 +121,4 @@ jobs:
           jf rt build-add-git
           # Publish build info
           jf rt build-publish
-          jf build-scan
+          #jf build-scan
