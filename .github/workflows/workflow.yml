@@ -79,24 +79,24 @@ jobs:
         working-directory: ./src
         run: jf npm publish
 
-      # - name: Build Docker Image
-      #   working-directory: ./
-      #   env:
-      #     IMAGE_NAME: joefrog.jfrog.io/nodejs-demo-docker/nodejs-demo-image:${{ github.run_number }}
-      #   run: |
-      #     jf docker build -t $IMAGE_NAME .
+      - name: Build Docker Image
+        working-directory: ./
+        env:
+          IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
+        run: |
+          jf docker build -t $IMAGE_NAME .
 
       # - name: Scan Docker Image
       #   working-directory: ./
       #   env:
-      #     IMAGE_NAME: joefrog.jfrog.io/nodejs-demo-docker/nodejs-demo-image:${{ github.run_number }}
+      #     IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
       #   run: |
       #     jf docker scan $IMAGE_NAME --format=json > xray-results.json
 
       # - name: Push Docker Image
       #   working-directory: ./
       #   env:
-      #     IMAGE_NAME: joefrog.jfrog.io/nodejs-demo-docker/nodejs-demo-image:${{ github.run_number }}
+      #     IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
       #   run: |
       #     jf docker push $IMAGE_NAME
 
