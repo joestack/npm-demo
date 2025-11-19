@@ -43,7 +43,7 @@ jobs:
 
       - name: Scan Source configured
         run: |
-          jf audit 
+          jf audit --watches "w-critical"
 
       # - name: Frogbot    
       #   uses: jfrog/frogbot@v2
