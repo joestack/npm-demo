@@ -93,12 +93,12 @@ jobs:
         run: |
           jf docker scan $IMAGE_NAME --format=json > xray-results.json
 
-      # - name: Push Docker Image
-      #   working-directory: ./
-      #   env:
-      #     IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
-      #   run: |
-      #     jf docker push $IMAGE_NAME
+      - name: Push Docker Image
+        working-directory: ./
+        env:
+          IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
+        run: |
+          jf docker push $IMAGE_NAME
 
 
 
@@ -110,14 +110,15 @@ jobs:
       # #     jf scan .
 
 
-      # - name: Publish Build info With JFrog CLI
-      #   working-directory: ./src
-      #   env:
-      #     JFROG_CLI_BUILD_NAME: npm-demo
-      #   run: |
-      #     # Collect environment variables for the build
-      #     jf rt build-collect-env
-      #     # Collect VCS details from git and add them to the build
-      #     jf rt build-add-git
-      #     # Publish build info
-      #     jf rt build-publish
+      - name: Publish Build info With JFrog CLI
+        working-directory: ./src
+        env:
+          JFROG_CLI_BUILD_NAME: npm-demo
+        run: |
+          # Collect environment variables for the build
+          jf rt build-collect-env
+          # Collect VCS details from git and add them to the build
+          jf rt build-add-git
+          jf build scan
+          # Publish build info
+          jf rt build-publish
