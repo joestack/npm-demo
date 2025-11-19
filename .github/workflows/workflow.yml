@@ -55,25 +55,25 @@ jobs:
       #     JF_GIT_BASE_BRANCH: ${{ matrix.branch }}    # For repository scan action
       #     JF_WATCHES: "w-critical"
 
-      # - name: Setup Node npm
-      #   uses: actions/setup-node@v3
+      - name: Setup Node npm
+        uses: actions/setup-node@v3
            
-      # - name: Set CLI Config
-      #   run: jf npm-config --global=true --repo-resolve=nodejs-demo-npm --repo-deploy=nodejs-demo-npm
+      - name: Set CLI Config
+        run: jf npm-config --global=true --repo-resolve=nodejs-demo-npm --repo-deploy=nodejs-demo-npm
            
-      # - name: Install Deps
-      #   working-directory: ./src
-      #   run: jf npm install
+      - name: Install Deps
+        working-directory: ./src
+        run: jf npm install
 
-      # - name: Start App
-      #   working-directory: ./src
-      #   run: |
-      #      npm start &
-      #      npx wait-on http://localhost:3000 -t 30000
+      - name: Start App
+        working-directory: ./src
+        run: |
+           npm start &
+           npx wait-on http://localhost:3000 -t 30000
            
-      # - name: Run tests
-      #   working-directory: ./src
-      #   run: npm test
+      - name: Run tests
+        working-directory: ./src
+        run: npm test
          
       # - name: Publish
       #   working-directory: ./src
