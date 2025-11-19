@@ -28,7 +28,7 @@ jobs:
         env:
           JF_URL: ${{ vars.JF_URL }}
         with:
-          oidc-provider-name: ${OIDC_PROVIDER_NAME} #joestack/npm-demo@github
+          oidc-provider-name: joestack/npm-demo@github
 
       - name: JFrog CLI Test
         run: |
