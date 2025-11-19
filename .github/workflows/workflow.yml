@@ -86,12 +86,12 @@ jobs:
         run: |
           jf docker build -t $IMAGE_NAME .
 
-      # - name: Scan Docker Image
-      #   working-directory: ./
-      #   env:
-      #     IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
-      #   run: |
-      #     jf docker scan $IMAGE_NAME --format=json > xray-results.json
+      - name: Scan Docker Image
+        working-directory: ./
+        env:
+          IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
+        run: |
+          jf docker scan $IMAGE_NAME --format=json > xray-results.json
 
       # - name: Push Docker Image
       #   working-directory: ./
@@ -112,6 +112,8 @@ jobs:
 
       # - name: Publish Build info With JFrog CLI
       #   working-directory: ./src
+      #   env:
+      #     JFROG_CLI_BUILD_NAME: npm-demo
       #   run: |
       #     # Collect environment variables for the build
       #     jf rt build-collect-env
