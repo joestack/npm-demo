@@ -59,7 +59,7 @@ jobs:
         uses: actions/setup-node@v3
            
       - name: Set CLI Config
-        run: jf npm-config --global=true --repo-resolve=nodejs-demo-npm --repo-deploy=nodejs-demo-npm
+        run: jf npm-config --global=true --repo-resolve=npm-demo-npm --repo-deploy=npm-demo-npm
            
       - name: Install Deps
         working-directory: ./src
@@ -75,9 +75,9 @@ jobs:
         working-directory: ./src
         run: npm test
          
-      # - name: Publish
-      #   working-directory: ./src
-      #   run: jf npm publish
+      - name: Publish
+        working-directory: ./src
+        run: jf npm publish
 
       # - name: Build Docker Image
       #   working-directory: ./
