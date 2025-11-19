@@ -112,8 +112,8 @@ jobs:
 
       - name: Publish Build info With JFrog CLI
         working-directory: ./src
-        env:
-          JFROG_CLI_BUILD_NAME: npm-demo
+        # env:
+        #   JFROG_CLI_BUILD_NAME: npm-demo
         run: |
           # Collect environment variables for the build
           jf rt build-collect-env
