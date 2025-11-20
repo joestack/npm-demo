@@ -48,6 +48,7 @@ jobs:
             --extended-table \
             --sast --sca --secrets \
             --npm \
+            --sbom \
             --format=table > scan-result-audit 
 
 
