@@ -43,7 +43,9 @@ jobs:
 
       - name: Scan Source configured
         run: |
-          jf audit --watches "w-critical"
+          jf audit \
+            --watches "w-critical" \
+            --format=table > scan-result-audit
 
       # - name: Frogbot    
       #   uses: jfrog/frogbot@v2
@@ -91,7 +93,11 @@ jobs:
         env:
           IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
         run: |
-          jf docker scan $IMAGE_NAME --format=json > xray-results.json --watches "w-critical"
+          jf docker scan $IMAGE_NAME \
+            --format=json > scan-result-image.json \
+            --watches "w-critical" \
+            --detailed-summary \
+            --licenses
 
       - name: Push Docker Image
         working-directory: ./
@@ -101,7 +107,11 @@ jobs:
           jf docker push $IMAGE_NAME
 
 
-
+      - name: Push Artifacts to GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-results
+          path: scan-result-*
 
 
       # # - name: scan
