@@ -45,7 +45,10 @@ jobs:
         run: |
           jf audit \
             --watches "w-critical" \
-            --format=table > scan-result-audit
+            --format=table > scan-result-audit \
+            --extended-table \
+            --sast --sca --secrets \
+            --npm
 
       # - name: Frogbot    
       #   uses: jfrog/frogbot@v2
