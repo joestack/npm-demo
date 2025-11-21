@@ -4,14 +4,6 @@
 // Ben C, Oct 2017 - Updated: Oct 2024
 //
 
-
-var log4js = require("log4js");
-var logger = log4js.getLogger();
-logger.level = "debug";
-logger.debug("Some debug messages");
-
-
-
 const packageJson = JSON.parse(readFileSync(new URL('./package.json', import.meta.url)))
 console.log(`### 🚀 Node.js demo app v${packageJson.version} starting...`)
 
