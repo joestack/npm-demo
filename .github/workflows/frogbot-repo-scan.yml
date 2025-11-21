@@ -17,7 +17,9 @@ jobs:
       matrix:
         # The repository scanning will be triggered periodically on the following branches.
         branch: ["main"]
-    steps:         
+    steps:    
+      - name: Checkout
+        uses: actions/checkout@v4     
       - name: Frogbot    
         uses: jfrog/frogbot@v2
         with:
