@@ -5,12 +5,16 @@ on:
     # The repository will be scanned once a day at 00:00 GMT.
     - cron: "0 0 * * *"
   push:
+    branches:
+      - main
+
 permissions:
   contents: write
   pull-requests: write
   security-events: write
   # [Mandatory If using OIDC authentication protocol instead of JF_ACCESS_TOKEN]
   id-token: write
+
 jobs:
   scan-repository:
     runs-on: ubuntu-latest
@@ -18,9 +22,7 @@ jobs:
       matrix:
         # The repository scanning will be triggered periodically on the following branches.
         branch: ["main"]
-    steps:    
-      # - name: Checkout
-      #   uses: actions/checkout@v4     
+    steps:     
       - name: Frogbot    
         uses: jfrog/frogbot@v2
         with:
@@ -28,5 +30,5 @@ jobs:
         env:
           JF_URL: ${{ vars.JF_URL }}
           JF_GIT_TOKEN: ${{ secrets.JF_GIT_TOKEN }}
-          #JF_GIT_BASE_BRANCH: ${{ matrix.branch }}    # For repository scan action
+          JF_GIT_BASE_BRANCH: ${{ matrix.branch }}    # For repository scan action
           #JF_WATCHES: "w-critical"
