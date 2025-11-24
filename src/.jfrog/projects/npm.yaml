@@ -1,0 +1,8 @@
+version: 1
+type: npm
+resolver:
+    repo: npm-demo-npm
+    serverId: joefrog.jfrog.io
+deployer:
+    repo: npm-demo-npm
+    serverId: joefrog.jfrog.io
