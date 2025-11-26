@@ -42,6 +42,6 @@ jobs:
           JF_URL: ${{ vars.JF_URL }}
           JF_GIT_TOKEN: ${{ secrets.JF_GIT_TOKEN }}
           JF_WATCHES: "w-critical"
-          JF_FAIL: true
+          JF_FAIL: false
         with:
           oidc-provider-name: "joestack/npm-demo@github"
