@@ -41,7 +41,13 @@ jobs:
         env:
           JF_URL: ${{ vars.JF_URL }}
           JF_GIT_TOKEN: ${{ secrets.JF_GIT_TOKEN }}
+          #NEW
+          #JF_WATCHES: "w-critical"
+          #JF_FAIL: false
+          # Security Settings
+          JF_MIN_SEVERITY: "critical"
+          JF_FAIL_ON_SECURITY_ISSUES: "true"
           JF_WATCHES: "w-critical"
-          JF_FAIL: false
+          JF_INCLUDE_ALL_VULNERABILITIES: "true"
         with:
           oidc-provider-name: "joestack/npm-demo@github"
