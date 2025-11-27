@@ -51,6 +51,13 @@ jobs:
             --sbom \
             --format=table > scan-result-audit 
 
+      - name: Push Source Code Artifacts to GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-code-scan
+          path: scan-result-audit
+
+
       - name: Setup Node npm
         uses: actions/setup-node@v3
            
@@ -88,7 +95,7 @@ jobs:
           IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
         run: |
           jf docker scan $IMAGE_NAME \
-            --format=json  > scan-results-image.json \
+            --format=json  > scan-result-image.json \
             --watches "w-critical" \
             --detailed-summary \
             --licenses
@@ -101,11 +108,11 @@ jobs:
           jf docker push $IMAGE_NAME
 
 
-      - name: Push Artifacts to GitHub
+      - name: Push Scan Artifacts to GitHub
         uses: actions/upload-artifact@v4
         with:
-          name: scan-results
-          path: scan-result-*
+          name: scan-results-image
+          path: scan-result-image.json
 
 
       # # - name: scan
@@ -125,4 +132,11 @@ jobs:
           jf rt build-add-git
           # Publish build info
           jf rt build-publish --detailed-summary --env-include="*"
+
+      - name: Wait 30s for Indexing
+        run: |
+          sleep 30
+
+      - name: Buld scan
+        run: |
           jf build-scan # Build Info in GitHub Summary: Security Issues
