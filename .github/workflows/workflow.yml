@@ -88,7 +88,7 @@ jobs:
           IMAGE_NAME: joefrog.jfrog.io/npm-demo-docker/nodejs-demo-image:${{ github.run_number }}
         run: |
           jf docker scan $IMAGE_NAME \
-            --format=json > scan-result-image.json \
+            --format=table > scan-results-image \
             --watches "w-critical" \
             --detailed-summary \
             --licenses
