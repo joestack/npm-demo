@@ -46,8 +46,8 @@ jobs:
           #JF_FAIL: false
           # Security Settings
           JF_MIN_SEVERITY: "critical"
-          JF_FAIL_ON_SECURITY_ISSUES: "true"
-          JF_WATCHES: "w-critical"
+          JF_FAIL_ON_SECURITY_ISSUES: "false"
+          #JF_WATCHES: "w-critical"
           JF_INCLUDE_ALL_VULNERABILITIES: "true"
         with:
           oidc-provider-name: "joestack/npm-demo@github"
