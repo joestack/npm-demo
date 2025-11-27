@@ -124,5 +124,5 @@ jobs:
           # Collect VCS details from git and add them to the build
           jf rt build-add-git
           # Publish build info
-          jf rt build-publish
+          jf rt build-publish --detailed-summary --env-include="*"
           jf build-scan # Build Info in GitHub Summary: Security Issues
