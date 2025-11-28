@@ -26,9 +26,10 @@ jobs:
           JF_MIN_SEVERITY: "critical"
           # is not interpreted here. Is for the yml config. Here in ENV it is JF_FAIL.
           JF_FAIL_ON_SECURITY_ISSUES: "false"
+          JF_FAIL: "false"
           #JF_WATCHES: "w-critical"
           JF_INCLUDE_ALL_VULNERABILITIES: "true"
           # if JF_FAIL=true, Frogbot process ends with exit 1 in case of an issue (no further information in PR) 
-          JF_FAIL: "false"
+          #JF_FAIL: "false"
         with:
           oidc-provider-name: "joestack/npm-demo@github"
