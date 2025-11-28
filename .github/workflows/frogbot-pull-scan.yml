@@ -17,38 +17,14 @@ jobs:
     # "frogbot" GitHub environment can approve the pull request to be scanned.
     environment: frogbot
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v4
-
-      # - name: Setup JFrog CLI
-      #   uses: jfrog/setup-jfrog-cli@v4
-      #   id: setup-cli
-      #   env:
-      #     JF_URL: ${{ vars.JF_URL }}
-      #   with:
-      #     oidc-provider-name: joestack/npm-demo@github
-
-      # - name: Setup Node npm
-      #   uses: actions/setup-node@v3
-           
-      # - name: Set CLI Config
-      #   run: jf npm-config --global=true --repo-resolve=npm-demo-npm --repo-deploy=npm-demo-npm
-           
-      # - name: Install Deps
-      #   working-directory: ./src
-      #   run: jf npm install
  
       - uses: jfrog/frogbot@v2
         env:
           JF_URL: ${{ vars.JF_URL }}
           JF_GIT_TOKEN: ${{ secrets.JF_GIT_TOKEN }}
-          #NEW
-          #JF_WATCHES: "w-critical"
-          #JF_FAIL: false
           # Security Settings
           JF_MIN_SEVERITY: "critical"
-
-          # is not taken under consideration here. Is for the yml config. ENV is JF_FAIL.
+          # is not interpreted here. Is for the yml config. Here in ENV it is JF_FAIL.
           JF_FAIL_ON_SECURITY_ISSUES: "false"
           #JF_WATCHES: "w-critical"
           JF_INCLUDE_ALL_VULNERABILITIES: "true"
