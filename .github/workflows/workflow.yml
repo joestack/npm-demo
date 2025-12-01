@@ -1,6 +1,8 @@
 name: "npm-demo"
 
 on:
+  workflow_dispatch:
+    
   push: # Triggers scan-repo flow for every push to the specified branches
     branches:
       - main
