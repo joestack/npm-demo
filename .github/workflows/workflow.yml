@@ -25,8 +25,9 @@ jobs:
     #     # The repository scanning will be triggered periodically on the following branches.
     #     branch: ["main"]
     steps:
-      - name: Setup Node npm
-        uses: actions/setup-node@v3
+
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v4
@@ -40,14 +41,18 @@ jobs:
         run: |
           jf rt ping
 
-      - name: Checkout
-        uses: actions/checkout@v4
+
+      - name: Setup Node npm
+        uses: actions/setup-node@v3
+
 
       - name: Setup npm-config
         run: jf npm-config --global=true --repo-resolve=npm-demo-npm --repo-deploy=npm-demo-npm
            
       - name: Scan Source configured
         run: |
+          jf rt bce 
+          jf rt bag 
           jf ca
           jf audit \
             --watches "w-critical" --fail=false \
@@ -62,10 +67,6 @@ jobs:
         with:
           name: source-code-scan
           path: scan-result-audit
-
-      - name: Curation Audit
-        run: |
-          jf ca
 
       - name: Install Deps
         working-directory: ./src
