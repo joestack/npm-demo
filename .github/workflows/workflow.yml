@@ -94,7 +94,7 @@ jobs:
           jf docker build -t $IMAGE_NAME .
 
       - name: Collect Docker Build Environment
-        run: jf rt bce --prefix "docker-" main-build ${{ github.run_number }}
+        run: jf rt bce 
 
       - name: Scan Docker Image
         working-directory: ./
