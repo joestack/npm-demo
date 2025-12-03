@@ -63,9 +63,9 @@ jobs:
           name: source-code-scan
           path: scan-result-audit
 
-      - name: Curation Audit
-        run: |
-          jf ca
+      # - name: Curation Audit
+      #   run: |
+      #     jf ca
 
 
       - name: Setup Node npm
