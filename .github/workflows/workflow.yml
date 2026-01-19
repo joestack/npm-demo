@@ -20,6 +20,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     # strategy:
     #   matrix:
     #     # The repository scanning will be triggered periodically on the following branches.
