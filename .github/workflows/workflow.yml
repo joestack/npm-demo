@@ -6,10 +6,10 @@ on:
   push: # Triggers scan-repo flow for every push to the specified branches
     branches:
       - main
-    paths:
-      - 'src/**'
-      - 'Dockerfile'
-      - 'README.md'
+    # paths:
+    #   - 'src/**'
+    #   - 'Dockerfile'
+    #   - 'README.md'
 
 permissions:
   pull-requests: write
@@ -73,31 +73,31 @@ jobs:
         uses: actions/setup-node@v3
            
       - name: Set CLI Config
-        working-directory: ./src
+        #working-directory: ./src
         run: jf npm-config --global=true --repo-resolve=npm-demo-npm --repo-deploy=npm-demo-npm
 
       - name: Curation Audit
-        working-directory: ./src
+        #working-directory: ./src
         run: |
           jf ca
 
 
       - name: Install Deps
-        working-directory: ./src
+        #working-directory: ./src
         run: jf npm install
 
       - name: Start App
-        working-directory: ./src
+        #working-directory: ./src
         run: |
            npm start &
            npx wait-on http://localhost:3000 -t 30000
            
       - name: Run tests
-        working-directory: ./src
+        #working-directory: ./src
         run: npm test
          
       - name: Publish
-        working-directory: ./src
+        #working-directory: ./src
         run: jf npm publish
 
       # - name: Build Docker Image
@@ -108,7 +108,7 @@ jobs:
       #     jf docker build -t $IMAGE_NAME .
 
       - name: Collect Docker Build Environment
-        working-directory: ./src
+        #working-directory: ./src
         run: jf rt bce 
 
       # - name: Scan Docker Image
@@ -144,7 +144,7 @@ jobs:
 
 
       - name: Publish Build info With JFrog CLI
-        working-directory: ./src
+        #working-directory: ./src
         # env:
         #   JFROG_CLI_BUILD_NAME: npm-demo
         run: |
@@ -160,6 +160,6 @@ jobs:
       #     sleep 30
 
       - name: Buld scan
-        working-directory: ./src
+        #working-directory: ./src
         run: |
           jf build-scan # Build Info in GitHub Summary: Security Issues
