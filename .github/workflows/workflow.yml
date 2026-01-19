@@ -73,9 +73,11 @@ jobs:
         uses: actions/setup-node@v3
            
       - name: Set CLI Config
+        working-directory: ./src
         run: jf npm-config --global=true --repo-resolve=npm-demo-npm --repo-deploy=npm-demo-npm
 
       - name: Curation Audit
+        working-directory: ./src
         run: |
           jf ca
 
@@ -106,6 +108,7 @@ jobs:
       #     jf docker build -t $IMAGE_NAME .
 
       - name: Collect Docker Build Environment
+        working-directory: ./src
         run: jf rt bce 
 
       # - name: Scan Docker Image
@@ -157,5 +160,6 @@ jobs:
       #     sleep 30
 
       - name: Buld scan
+        working-directory: ./src
         run: |
           jf build-scan # Build Info in GitHub Summary: Security Issues
